@@ -37,12 +37,14 @@ async function loginUser (req, res){
         //peticion sql a la BBDD
         const [result] = await pool.query(sql, params);
         if (result.length != 0){
-            answer = {error: false, code: 200, message: "Usuario logeado correctamente", result: result};
+            // answer = {error: false, code: 200, message: "Usuario logeado correctamente", result: result};
+            answer = false;
         }
         else{
-            answer = {error: true, code: 200, message: "Usuario no registrado", result: result};
+            // answer = {error: true, code: 200, message: "Usuario no registrado", result: result};
+            answer = true;
         }
-        res.send(answer);
+        res.send(result);
     } 
     catch (error) {
     console.log(error); 
