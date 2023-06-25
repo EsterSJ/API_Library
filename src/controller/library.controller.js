@@ -14,7 +14,6 @@ async function registerUser (req, res){
     try {
         //peticion sql a la BBDD
         const [result] = await pool.query(sql, params);
-        console.log(result);
         let answer = {error: false, code: 200, message: "Usuario registrado correctamente", result: result};
         res.send(answer);
     } 
