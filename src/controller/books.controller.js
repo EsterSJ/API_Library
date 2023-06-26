@@ -77,12 +77,12 @@ async function putBook (req, res){
 
 async function deleteBook (req, res){
     
-    //recogemos los datos del libro a añadir por el body
-    const {id_book} = req.body;
-    const params = [id_book,];
+    //recogemos los datos del libro que queremos borrar por el body
+    const {id_user, id_book} = req.body;
+    const params = [id_user, id_book];
 
-    //añadimos el nuevo libro
-    let sql= `DELETE FROM book WHERE id_book = ?`;
+    //borramos el nuevo libro
+    let sql= `DELETE FROM book WHERE id_user = ? AND id_book = ? `;
 
     try {
         //peticion sql a la BBDD
