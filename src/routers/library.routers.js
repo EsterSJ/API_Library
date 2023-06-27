@@ -6,6 +6,7 @@ const booksCtrl = require('../controller/books.controller');
 //Endpoints de usuario.
 router.post("/register", libraryCtrl.registerUser);
 router.post("/login", libraryCtrl.loginUser);
+router.put("/usuarios", libraryCtrl.editUser);
 
 //Endpoints de libros.
 router.get("/books", booksCtrl.getBooks);

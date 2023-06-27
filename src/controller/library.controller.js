@@ -43,4 +43,33 @@ async function loginUser (req, res){
     }
 }
 
-module.exports = {registerUser,loginUser};
+    //Modificar perfil de usuario
+    async function editUser (req, res){
+    
+        //recogemos los datos de usuario por el body (mail y password)
+        const {id_user, name, last_name, email, photo, password} = req.body;
+        const params = [
+            name? name: null,
+            last_name? last_name: null,
+            email? email: null,
+            photo? photo: null,
+            password? password: null,
+            id_user? id_user: null,
+        ];
+    
+
+        //buscamos el usuario en la tabla user y modificamos los datos
+        let sql = `UPDATE user SET name = COALESCE(?,name), last_name = COALESCE(?,last_name), email = COALESCE(?,email), photo = COALESCE(?,photo), password = COALESCE(?,password) WHERE id_user = ?`;
+
+        try {
+            //peticion sql a la BBDD
+            const [result] = await pool.query(sql, params);
+            res.send(result);
+        } 
+        catch (error) {
+        console.log(error); 
+        }
+    }
+
+
+module.exports = {registerUser,loginUser,editUser};
